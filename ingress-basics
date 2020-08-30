@@ -1,0 +1,25 @@
+Ingress resource should be in the same namespace as the service.
+
+$ kubectl -n critical-space get svc
+NAME          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+pay-service   ClusterIP   10.97.248.92   <none>        8282/TCP   3m51s
+
+
+$ cat /var/answers/ingress-pay.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+  namespace: critical-space
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /pay
+        backend:
+          serviceName: pay-service
+          servicePort: 8282
+          
+

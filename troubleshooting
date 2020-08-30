@@ -1,0 +1,12 @@
+pod - lables and port number
+check the endpoints(kubectl get ep) and it's IP Address.
+If no IP Address then there is a problem
+describe service - check labels and ports and target port
+
+check username, password, hostname(db servicename) in case of tier2 application
+configure right password on both web and db
+
+=============================
+kubectl cluster-info 
+kubectl get cs 
+kubectl get ep 
